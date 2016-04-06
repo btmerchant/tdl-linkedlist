@@ -1,0 +1,33 @@
+﻿SinglyLinked Node Methods
+
+1	SLLN.Next									- Getter Setter for private next.
+2	SLLN.Value									- Getter for private value.
+3	SLLN <										- Operator less than (Overrides the operator).
+4	SLLN >										- Operator greater than (Overrides the operator).
+5	SLLN.SinglyLinkedListNode(string value)		- CONSTRUCTOR w/ value to initialize.
+6	CompareTo(object obj)						- Compare the Values of two objects (nodes) the system uses compareTo.
+7	IsLast()									- Returns true if the current node is the last (null).
+8	ToString()									- override system method returns the string of the current nodes Value.
+9	Equals(object obj)							- override returns true if the Value of this is equal to the Value of obj.
+10	GetHashCode()								- returns 
+
+SinglyLinked List Methods
+
+1	SinglyLinkedList()							- Basic CONSTRUCTOR takes no peramiters.
+2	SinglyLinkedList(params object[] values)	- CONSTRUCTOR initializes with an array of objects receiving the list of values.
+3	public string this int[i]					- Node indexer returns the string value of the indexed element.
+4	AddAfter(string value)						- Adds a node at the end of the list w/ the initializes Value.
+5	AddFirst(string value)						- Adds a node at the begining of the list w/ the initialized Value.
+6	AddLast(string value)						- Adds a node at the end of the list /w the initalised Value.
+7	Count()										- Returns the number of nodes in the current list.
+8	ElementAt(int index)						- Returns the Value of the indexed node.
+9	First()										- Returns the Value of the first node in the current list.
+10	IndexOf(string value)						- Returns the index number of the first node with the Value of value.
+11	IsSorted()									- Returns true if ?????
+12	LastNode()									- Returns the index of the last node in the current list.
+13	Last()										- Returns the Value of the last node ?????? isnt that null?.
+14	Remove(string value)						- Removes the first node that contains the value.
+15	Sort()										- Sorts the current list ?.
+16	ToArray()									- Returns a string array of the Values in the current list.
+17	Empty()										- Returns true if there are no nodes in the current list.
+	

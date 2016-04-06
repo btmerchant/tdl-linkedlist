@@ -43,6 +43,9 @@
     <Compile Include="SinglyLinkedList.cs" />
     <Compile Include="SinglyLinkedListNode.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="MethodList.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
