@@ -18,15 +18,15 @@ namespace SinglyLinkedLists
         {
             // BT
             get { return this._next; }
-            set { 
+            set {
                 if(value == this)
             {
-                    throw new ArgumentException();
+                throw new ArgumentException();
             }
              this._next = value;
-            }
-            // BT
         }
+        // BT
+    }
 
         private string _value;
         public string Value 

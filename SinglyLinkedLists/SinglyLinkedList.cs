@@ -32,7 +32,7 @@ namespace SinglyLinkedLists
             string[] x = new string[size];
             if (values != null)
             {
-                for (int i = 0; i < size - 1; i++)
+                for (int i = 0; i <= size - 1; i++)
                 {
                     x[i] = values[i].ToString();
                     AddLast(x[i]);
@@ -157,20 +157,19 @@ namespace SinglyLinkedLists
             // BT
             SinglyLinkedListNode current = Head;
             int index = IndexOf(value);
+            if (index == -1)
+                return;
             int x = Count();
 
-            if (index < 0)
-                throw new  ArgumentOutOfRangeException("Index: " + index);
-
-            if (index >= x)
-                index = x - 1;
+            if (index < 0 || index >= x)
+                throw new  ArgumentOutOfRangeException("Size of List: " + x + "    Index: " + index);
 
             string result = null;
 
             if (index == 0)
             {
                 result = current.Value;
-                current = current.Next;
+                Head = current.Next;
             }
             else
             {
@@ -191,14 +190,18 @@ namespace SinglyLinkedLists
 
         public string[] ToArray()
         {
-            throw new NotImplementedException();
+            // BT
+            SinglyLinkedListNode current = this.Head;
+            int size = this.Count();
+            string[] SLLArray = new string[size];
+            for (int i = 0; i < size; i++)
+            {
+                SLLArray[i] = current.Value;
+                current = current.Next;
+            }
+            return SLLArray;
+            // BT
+            // throw new NotImplementedException();
         }
-
-        // BT
-        public bool Empty
-        {
-            get { return Count() == 0; }
-        }
-        // BT
     }
 }
