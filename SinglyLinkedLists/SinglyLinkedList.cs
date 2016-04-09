@@ -53,12 +53,37 @@ namespace SinglyLinkedLists
 
         public void AddAfter(string existingValue, string value)
         {
-            throw new NotImplementedException();
+            // BT
+            SinglyLinkedListNode current = Head;
+                while(current.Value != existingValue)
+            {
+                if (current == null)
+                    return;
+                current = current.Next;
+            }
+            current = current.Next;
+            SinglyLinkedListNode temp = new SinglyLinkedListNode(value);
+            temp = current.Next;
+            current = temp;
+            // BT
+            //throw new NotImplementedException();
         }
 
         public void AddFirst(string value)
         {
-            throw new NotImplementedException();
+            // BT
+            if (Head == null)
+            {
+                Head = new SinglyLinkedListNode(value);
+            }
+            else
+            {
+                SinglyLinkedListNode temp = new SinglyLinkedListNode(value);
+                temp.Next = Head;
+                Head = temp;
+            }
+            // BT
+            //throw new NotImplementedException();
         }
 
         public void AddLast(string value)
@@ -107,8 +132,11 @@ namespace SinglyLinkedLists
         public string First()
         {
             //BT
-            string x = this[0];
-            return x;
+            SinglyLinkedListNode current = Head;
+            if (current == null)
+                return null;
+            else
+                return current.Value;
             //BT
             //throw new NotImplementedException();
         }
