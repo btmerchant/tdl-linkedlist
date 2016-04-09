@@ -118,7 +118,7 @@ namespace UnitTestSinglyLinkedLists
         public void ToStringOnEmptyList()
         {
             SinglyLinkedList list = new SinglyLinkedList();
-            Assert.AreEqual("{ }", list.ToString());
+             Assert.AreEqual("{ }", list.ToString());
         }
 
         [TestMethod]

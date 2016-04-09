@@ -37,6 +37,11 @@ namespace SinglyLinkedLists
             // BT
         }
 
+      
+
+
+
+
         public static bool operator <(SinglyLinkedListNode node1, SinglyLinkedListNode node2)
         {
             // BT

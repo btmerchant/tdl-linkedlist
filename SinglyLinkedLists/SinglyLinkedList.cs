@@ -55,16 +55,19 @@ namespace SinglyLinkedLists
         {
             // BT
             SinglyLinkedListNode current = Head;
-                while(current.Value != existingValue)
+        loop:
+            if (current == null)
+                throw new ArgumentException("Not in list", "current");
+            else if (current.Value == existingValue)
             {
-                if (current == null)
-                    return;
-                current = current.Next;
+                SinglyLinkedListNode temp = new SinglyLinkedListNode(value);
+                temp.Next = current.Next;
+                current.Next = temp;
+                return;
             }
-            current = current.Next;
-            SinglyLinkedListNode temp = new SinglyLinkedListNode(value);
-            temp = current.Next;
-            current = temp;
+            else
+                current = current.Next;
+            goto loop;
             // BT
             //throw new NotImplementedException();
         }
@@ -126,7 +129,26 @@ namespace SinglyLinkedLists
 
         public string ElementAt(int index)
         {
-            throw new NotImplementedException();
+            SinglyLinkedListNode current = Head;
+            if (Head == null)
+                throw new ArgumentOutOfRangeException();
+            else
+                for (int i = 0; i < index; i++)
+                {
+                    current = current.Next;
+                }
+            return current.Value;
+
+            //SinglyLinkedListNode current = Head;
+            //if (current == null)
+            //    return "";
+            //else
+            //{
+            //    return this[index];
+            //}
+
+
+            //throw new NotImplementedException();
         }
 
         public string First()
@@ -176,8 +198,23 @@ namespace SinglyLinkedLists
         // BT
 
         public string Last()
-        {           
-            throw new NotImplementedException();
+        {
+            SinglyLinkedListNode current = Head;
+            int size = this.Count();
+                for (int i = 0; i < size -1 ; i++)
+                {
+                    current = current.Next;
+                }
+            try
+            {
+                return current.Value;
+            } 
+            catch
+            {
+                return null;
+            }
+
+            //throw new NotImplementedException();
         }
 
         public void Remove(string value)
@@ -219,7 +256,7 @@ namespace SinglyLinkedLists
         public string[] ToArray()
         {
             // BT
-            SinglyLinkedListNode current = this.Head;
+            SinglyLinkedListNode current = Head;
             int size = this.Count();
             string[] SLLArray = new string[size];
             for (int i = 0; i < size; i++)
@@ -230,6 +267,39 @@ namespace SinglyLinkedLists
             return SLLArray;
             // BT
             // throw new NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+            if (Head == null)
+                return "{ }";
+            else
+            {
+                int size = this.Count();
+                SinglyLinkedListNode current = Head;
+                StringBuilder result = new StringBuilder();
+                result.Append("{ ");
+                //result.Append("\\");
+                while (current != null)
+                {
+                    result.Append("\"");
+                    result.Append(current.Value);
+                    if (current.Next != null)
+                        result.Append("\"\x2C ");
+                    else
+                    { 
+                        result.Append("\"");
+                   // if(current.Next == null)
+                        //{
+                        result.Append(" }");
+                        // return Convert.ToString(result);
+                        // }
+                        // result.Append("\x2C \\");
+                    }
+                    current = current.Next;
+                }
+                return Convert.ToString(result);
+            }
         }
     }
 }
