@@ -256,7 +256,7 @@ namespace UnitTestSinglyLinkedLists
 
         [TestMethod]
         public void ListBracketAssignmentPreservesRestOfList()
-        {
+         {
             SinglyLinkedList list = new SinglyLinkedList("foo", "bar", "grille");
             list[2] = "cat";
             var expected = new string[] { "foo", "bar", "cat" };
@@ -399,6 +399,8 @@ namespace UnitTestSinglyLinkedLists
         public void IsSortedOnSingleItemList()
         {
             SinglyLinkedList list = new SinglyLinkedList("foo");
+
+
             Assert.IsTrue(list.IsSorted());
         }
 

@@ -16,7 +16,6 @@ namespace SinglyLinkedLists
 
         public SinglyLinkedListNode Next
         {
-            // BT
             get { return this._next; }
             set {
                 if(value == this)
@@ -25,16 +24,13 @@ namespace SinglyLinkedLists
             }
              this._next = value;
         }
-        // BT
     }
 
-        private string _value;
+        public string _value;
         public string Value 
         {
-            // BT
             get { return _value; }
             set { _value = value; }
-            // BT
         }
 
       
@@ -44,32 +40,26 @@ namespace SinglyLinkedLists
 
         public static bool operator <(SinglyLinkedListNode node1, SinglyLinkedListNode node2)
         {
-            // BT
             int test = string.Compare(node1.Value, node2.Value);
             if (test == -1) return true;
             return false;
-            // BT
             // This implementation is provided for your convenience.
             //return node1.CompareTo(node2) < 0;
         }
 
         public static bool operator >(SinglyLinkedListNode node1, SinglyLinkedListNode node2)
         {
-            // BT
             int test = string.Compare(node1.Value, node2.Value);
             if (test == 1) return true;
             return false;
-            // BT
             // This implementation is provided for your convenience.
             //return node1.CompareTo(node2) > 0;
         }
 
         public SinglyLinkedListNode(string value) // Constructor
         {
-            // BT
             Value = value;
             Next = null;
-            // BT
             //throw new NotImplementedException();
             // Used by the visualizer:
             allNodes.Add(this);
@@ -94,20 +84,15 @@ namespace SinglyLinkedLists
 
         public bool IsLast()
         {
-            // BT
             return Next == null;
-            // BT
             // throw new NotImplementedException();
         }
 
-        // BT
         public override string ToString()
         {           
                 return this.Value;           
         }
-        // BT
 
-        // BT
         public override bool Equals(object obj)
         {
             if (obj is SinglyLinkedListNode) // if a node object is passed in
@@ -117,11 +102,9 @@ namespace SinglyLinkedLists
             }
             else { return false; }            
         }
-        // BT
 
         //public override object
 
-        // BT
         public override int GetHashCode()
         {
             return base.GetHashCode();
@@ -138,7 +121,5 @@ namespace SinglyLinkedLists
                 Next.AddLast(value);
             }
         }
-        // BT
-
     }
 }

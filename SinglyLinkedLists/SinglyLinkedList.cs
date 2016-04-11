@@ -12,9 +12,7 @@ namespace SinglyLinkedLists
         public SinglyLinkedList()
         {
             // NOTE: This constructor isn't necessary, once you've implemented the constructor below.
-            // BT
             Head = null;
-            // BT
         }
 
         public SinglyLinkedListNode Head
@@ -26,7 +24,6 @@ namespace SinglyLinkedLists
         // READ: http://msdn.microsoft.com/en-us/library/aa691335(v=vs.71).aspx
         public SinglyLinkedList(params object[] values)
         {
-            //BT
             Head = null;
             int size = values.Length;
             string[] x = new string[size];
@@ -38,22 +35,30 @@ namespace SinglyLinkedLists
                     AddLast(x[i]);
                 }
             }
-            // BT
             //throw new NotImplementedException();
         }
 
         // READ: http://msdn.microsoft.com/en-us/library/6x16t2tx.aspx
-        public string this[int i] // This is the Indexer
+        public string this[int index] // This is the Indexer
         {
-            // BT
-            get { return this[i]; /*throw new NotImplementedException()*/}
-            set { this[i] = value; /*throw new NotImplementedException()*/; }
-            // BT
+            //get { return this[index]; /*throw new NotImplementedException()*/}
+            get { return ElementAt(index); /*throw new NotImplementedException()*/}
+            set
+            {
+                SinglyLinkedListNode current = Head;
+                if (Head == null)
+                    throw new ArgumentOutOfRangeException();
+                else
+                    for (int i = 0; i < index; i++)
+                    {
+                        current = current.Next;
+                    }
+                current.Value = value; /*throw new NotImplementedException()*/
+            }
         }
 
         public void AddAfter(string existingValue, string value)
         {
-            // BT
             SinglyLinkedListNode current = Head;
         loop:
             if (current == null)
@@ -68,13 +73,11 @@ namespace SinglyLinkedLists
             else
                 current = current.Next;
             goto loop;
-            // BT
             //throw new NotImplementedException();
         }
 
         public void AddFirst(string value)
         {
-            // BT
             if (Head == null)
             {
                 Head = new SinglyLinkedListNode(value);
@@ -85,13 +88,11 @@ namespace SinglyLinkedLists
                 temp.Next = Head;
                 Head = temp;
             }
-            // BT
             //throw new NotImplementedException();
         }
 
         public void AddLast(string value)
         {
-            // BT Looks Good!
             if(Head == null)
             {
                 Head  = new SinglyLinkedListNode(value);
@@ -100,15 +101,12 @@ namespace SinglyLinkedLists
             {
                Head.AddLast(value);
             }
-            // BT
-
            // throw new NotImplementedException();
         }
 
         // NOTE: There is more than one way to accomplish this.  One is O(n).  The other is O(1).
         public int Count()
         {
-            // BT
             SinglyLinkedListNode current = Head;
             int count = 0;
             loop:
@@ -122,14 +120,15 @@ namespace SinglyLinkedLists
                 current = current.Next;
                 goto loop;
             }
-            // BT
-
             //throw new NotImplementedException();
         }
 
         public string ElementAt(int index)
         {
             SinglyLinkedListNode current = Head;
+            int size = this.Count();
+            if (index > size)
+                throw new ArgumentOutOfRangeException();
             if (Head == null)
                 throw new ArgumentOutOfRangeException();
             else
@@ -138,34 +137,21 @@ namespace SinglyLinkedLists
                     current = current.Next;
                 }
             return current.Value;
-
-            //SinglyLinkedListNode current = Head;
-            //if (current == null)
-            //    return "";
-            //else
-            //{
-            //    return this[index];
-            //}
-
-
             //throw new NotImplementedException();
         }
 
         public string First()
         {
-            //BT
             SinglyLinkedListNode current = Head;
             if (current == null)
                 return null;
             else
                 return current.Value;
-            //BT
             //throw new NotImplementedException();
         }
 
         public int IndexOf(string value)
         {
-            //BT
             SinglyLinkedListNode current = Head;
             int x = Count();
             for (int i = 0; i < x; i++)
@@ -175,27 +161,35 @@ namespace SinglyLinkedLists
                 current = current.Next;
             }
             return -1;
-            // BT
-
             //throw new NotImplementedException();
         }
 
         public bool IsSorted()
         {
-            throw new NotImplementedException();
+            if (Head == null)
+                return true;
+            SinglyLinkedListNode current = Head;
+            int size = this.Count();
+            if (size == 1)
+                return true;
+            for(int i = 0; i < size; i++)
+            {
+                if (String.Compare(current.Value, current.Next.Value) > 0)
+                    return false;
+            }
+            return true;           
+            //throw new NotImplementedException();
         }
 
         // HINT 1: You can extract this functionality (finding the last item in the list) from a method you've already written!
         // HINT 2: I suggest writing a private helper method LastNode()
         // HINT 3: If you highlight code and right click, you can use the refactor menu to extract a method for you...
 
-        // BT returns the index of the last node
         public int LastNode()
         {
             int end = IndexOf(null);
             return end;
         }
-        // BT
 
         public string Last()
         {
@@ -213,13 +207,11 @@ namespace SinglyLinkedLists
             {
                 return null;
             }
-
             //throw new NotImplementedException();
         }
 
         public void Remove(string value)
         {
-            // BT
             SinglyLinkedListNode current = Head;
             int index = IndexOf(value);
             if (index == -1)
@@ -244,18 +236,39 @@ namespace SinglyLinkedLists
                 result = current.Next.Value;
                 current.Next = current.Next.Next;
             }
-            // BT
             // throw new NotImplementedException();
         }
 
         public void Sort()
         {
-            throw new NotImplementedException();
+            if (Head == null || Head.Next == null)
+                return;
+            SinglyLinkedListNode current = Head;
+            string temp = "";
+            int size = this.Count();
+            int cycles = size;
+        loop:
+            for (int i = 1; i < size;) 
+            {
+                if (string.Compare(current.Value, current.Next.Value) > 0)
+                {
+                    temp = current.Value;
+                    current.Value = current.Next.Value;
+                    current.Next.Value = temp;                  
+                }
+                current = current.Next;
+                size--;
+            }
+            cycles--;
+            size = cycles;
+            current = Head;
+            if (cycles == 1)
+                return;
+            goto loop;
         }
 
         public string[] ToArray()
         {
-            // BT
             SinglyLinkedListNode current = Head;
             int size = this.Count();
             string[] SLLArray = new string[size];
@@ -265,7 +278,6 @@ namespace SinglyLinkedLists
                 current = current.Next;
             }
             return SLLArray;
-            // BT
             // throw new NotImplementedException();
         }
 
