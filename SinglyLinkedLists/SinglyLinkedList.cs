@@ -156,7 +156,8 @@ namespace SinglyLinkedLists
             int x = Count();
             for (int i = 0; i < x; i++)
             {
-                if (current.Value.Equals(value))
+                //if (current.Value.Equals(value))
+                if (current.Value == value)
                     return i;
                 current = current.Next;
             }
@@ -221,19 +222,14 @@ namespace SinglyLinkedLists
             if (index < 0 || index >= x)
                 throw new  ArgumentOutOfRangeException("Size of List: " + x + "    Index: " + index);
 
-            string result = null;
-
             if (index == 0)
             {
-                result = current.Value;
                 Head = current.Next;
             }
             else
             {
                 for (int i = 0; i < index - 1; i++)
                     current = current.Next;
-
-                result = current.Next.Value;
                 current.Next = current.Next.Next;
             }
             // throw new NotImplementedException();
